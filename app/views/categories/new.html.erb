@@ -1,0 +1,13 @@
+<h1>New category</h1>
+
+<%= form_with model: @category do |form| %>
+  <div class="field">
+    <%= form.label :name, class: "text-lg font-medium mb-2" %>
+    <%= form.text_field :name, placeholder:"Category's name" %>
+  </div>
+  <%= form.submit "Save", class: "actions" %>
+<% end %>
+
+<div>
+  <%= link_to "Back to categories", categories_path %>
+</div>
