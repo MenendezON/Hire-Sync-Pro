@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2023_12_30_143332) do
+ActiveRecord::Schema[7.1].define(version: 2023_12_30_154958) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -20,4 +20,21 @@ ActiveRecord::Schema[7.1].define(version: 2023_12_30_143332) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "posts", force: :cascade do |t|
+    t.string "slug"
+    t.string "title"
+    t.string "location"
+    t.date "deadline"
+    t.text "summary"
+    t.text "duties"
+    t.text "qualifications"
+    t.text "extrat", default: "Not available.", null: false
+    t.boolean "available", default: true
+    t.bigint "category_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["category_id"], name: "index_posts_on_category_id"
+  end
+
+  add_foreign_key "posts", "categories"
 end
