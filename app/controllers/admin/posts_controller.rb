@@ -61,6 +61,15 @@ class PostsController < ApplicationController
       # Use callbacks to share common setup or constraints between actions.
   def set_post
     @post = Post.includes(:category).find(params[:id])
+  rescue ActiveRecord::RecordNotFound => e
+    render_404(e.message)
+  end
+
+  def render_404(message)
+    respond_to do |format|
+      format.html { render file: "#{Rails.root}/public/404.html", layout: false, status: :not_found }
+      format.json { render json: { error: message }, status: :not_found }
+    end
   end
   
       # Only allow a list of trusted parameters through.
