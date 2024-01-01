@@ -1,4 +1,4 @@
-class PostsController < ApplicationController
+class Admin::PostsController < ApplicationController
   before_action :set_post, only: %i[ show edit update destroy ]
 
   # GET /posts or /posts.json
@@ -24,7 +24,7 @@ class PostsController < ApplicationController
     @post = Post.new(post_params)
 
     if @post.save
-      redirect_to posts_path, notice: 'Post created successfully.'
+      redirect_to admin_posts_path, notice: 'Post created successfully.'
     else
       render 'new'
     end
@@ -34,7 +34,7 @@ class PostsController < ApplicationController
     def update
       respond_to do |format|
         if @post.update(post_params)
-          format.html { redirect_to post_url(@post), notice: "Post was successfully updated." }
+          format.html { redirect_to admin_post_url(@post), notice: "Post was successfully updated." }
           format.json { render :show, status: :ok, location: @post }
         else
           format.html { render :edit, status: :unprocessable_entity }

@@ -1,6 +1,7 @@
 class Post < ApplicationRecord
   before_save :generate_slug
   belongs_to :category
+  has_many : candidates, dependent: :destroy
 
   validates :title, presence: true
   validates :location, presence: true

@@ -1,6 +1,16 @@
-<h1>New post</h1>
+<%= form_with(model: [:admin, post]) do |form| %>
+  <% if post.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(post.errors.count, "error") %> prohibited this post from being saved:</h2>
 
-<%= form_with model: @post do |form| %>
+      <ul>
+        <% post.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
   <div class="field">
     <%= form.label :title, class: "text-lg font-medium mb-2" %>
     <%= form.text_field :title, placeholder:"Job's title" %>
@@ -38,8 +48,5 @@
   <%= select("post", "category_id", Category.all.collect { |p| [ p.name, p.id ] }, { prompt: 'Select a category' }, required: true) %>
 </div>
 <%= form.submit "Save", class: "actions" %>
-<% end %>
 
-<div>
-  <%= link_to "Back to posts", posts_path %>
-</div>
+<% end %>
