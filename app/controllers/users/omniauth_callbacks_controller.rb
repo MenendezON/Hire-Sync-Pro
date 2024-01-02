@@ -31,8 +31,6 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
         flash[:alert] = t 'devise.omniauth_callbacks.faillure', kind: 'Google', reason: 'User not found' 
       end
     else
-      flash[:alert] = t 'devise.omniauth_callbacks.faillure', kind: 'Google', reason: 'User not found'
-    end 
 	end
 
   # protected
