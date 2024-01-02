@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   end
 
   namespace :admin do
+    get '/', to: redirect('/admin/categories'), as: :admin_root
     resources :posts do
       resources :applicants
     end
