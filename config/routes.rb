@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   namespace :admin do
     resources :posts do
-      resources :candidates
+      resources :applicants
     end
     resources :categories
   end
