@@ -1,0 +1,52 @@
+<%= form_with(model: [:admin, post]) do |form| %>
+  <% if post.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(post.errors.count, "error") %> prohibited this post from being saved:</h2>
+
+      <ul>
+        <% post.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :title, class: "text-lg font-medium mb-2" %>
+    <%= form.text_field :title, placeholder:"Job's title" %>
+  </div>
+  <div class="field">
+    <%= form.label :location, class: "text-lg font-medium mb-2" %>
+    <%= form.text_field :location, placeholder:"Job's location" %>
+  </div>
+  <div class="field">
+    <%= form.label :deadline, class: "text-lg font-medium mb-2" %>
+    <%= form.date_field :deadline, placeholder:"Job's deadline" %>
+  </div>
+
+  <div class="field">
+  <%= form.label :summary, class: "text-lg font-medium" %>
+  <%= form.text_area :summary, placeholder: "Job's summary" %>
+</div>
+<div class="field">
+  <%= form.label :duties, class: "text-lg font-medium" %>
+  <%= form.text_area :duties, placeholder: "Job's duties" %>
+</div>
+<div class="field">
+<%= form.label :qualifications, class: "text-lg font-medium" %>
+<%= form.text_area :qualifications, placeholder: "Job's qualifications" %>
+</div>
+<div class="field">
+<%= form.label :extrat, class: "text-lg font-medium" %>
+<%= form.text_area :extrat, placeholder: "Job's extrat" %>
+</div>
+<div class="field">
+  <%= form.label :available, class: "text-lg font-medium" %>
+  <%= form.check_box :available %>
+</div>
+<div class="field">
+  <%= select("post", "category_id", Category.all.collect { |p| [ p.name, p.id ] }, { prompt: 'Select a category' }, required: true) %>
+</div>
+<%= form.submit "Save", class: "actions" %>
+
+<% end %>

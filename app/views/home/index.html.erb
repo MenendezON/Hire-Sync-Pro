@@ -1,0 +1,30 @@
+<h1>Posts <%= link_to "+", new_admin_post_path %></h1>
+
+<div id="posts">
+<table class="table table-hover">
+<tr>
+  <th>Slug</th>
+  <th>Title</th>
+  <th>Category</th>
+  <th>Applicants</th>
+  <th>Deadline</th>
+  <th>Created</th>
+  <th>Action</th>
+</tr>
+  <% @posts.each do |post| %>
+    <tr>
+      <td><%= post.slug %></td>
+      <td><%= post.title %></td>
+      <td><%= post.category.name %></td>
+      <td>0</td>
+      <td><%= post.deadline %></td>
+      <td><%= post.created_at %></td>
+      <td><%= link_to "Show this post", admin_post_path(post) %></td>
+    </tr>
+  <% end %>
+  </table>
+</div>
+
+
+
+
