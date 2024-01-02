@@ -2,7 +2,7 @@
 
 # Version of your assets, change this if you want to expire all your assets.
 Rails.application.config.assets.version = "1.0"
-Rails.application.config.assets.precompile += %w( css/bootstrap.min.css sidebars.css js/bootstrap.bundle.js sidebars.js )
+Rails.application.config.assets.precompile += %w( css/bootstrap.min.css sidebars.css js/bootstrap.bundle.js sidebars.js custom.js )
 
 # Add additional assets to the asset load path.
 # Rails.application.config.assets.paths << Emoji.images_path
