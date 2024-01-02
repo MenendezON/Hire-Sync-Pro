@@ -26,6 +26,8 @@
 #     en:
 #       "yes": yup
 #       enabled: "ON"
-
 en:
   hello: "Hello world"
+  devise:
+    omniauth_callbacks:
+      failure: "Authentication failed. Please try again."

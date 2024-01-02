@@ -1,10 +1,20 @@
 Rails.application.routes.draw do
+  devise_for :users, controllers: { 
+    registration: 'users/registrations', 
+    sessions: 'users/sessions',
+    omniauth_callbacks: 'users/omniauth_callbacks' 
+  }
+  authenticated :user do
+    root "admin#index", as: :authenticated_root
+  end
+
   namespace :admin do
     resources :posts do
       resources :applicants
     end
     resources :categories
   end
+
 
   resources :posts do
     resources :applicants

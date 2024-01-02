@@ -22,6 +22,13 @@ gem "turbo-rails"
 
 gem 'turbolinks'
 
+gem 'therubyracer'
+
+gem 'devise'
+gem 'omniauth'
+gem 'omniauth-google-oauth2'
+gem 'omniauth-rails_csrf_protection', "~> 1.0"
+
 gem 'jquery-rails'
 
 # Hotwire's modest JavaScript framework [https://stimulus.hotwired.dev]
