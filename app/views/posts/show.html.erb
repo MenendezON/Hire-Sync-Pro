@@ -19,7 +19,12 @@
       <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
       <p class="card-text">Some quick example text to build on </p>
 
-      <%= link_to "Apply", new_admin_post_applicant_path(@post), class: "btn btn-primary" %>
+      
+      <% if current_user %>
+        <%= link_to "Apply", new_admin_post_applicant_path(@post), class: "btn btn-primary" %>
+      <% else %>
+        <%= link_to "Apply", new_post_applicant_path(@post), class: "btn btn-primary" %>
+      <% end %>
 
     </div>
   </div>
@@ -78,10 +83,8 @@
         </div>
       </div>
     
-      <%= link_to "Edit this post", edit_admin_post_path(@post) %> |
-      <%= link_to "Back to posts", admin_posts_path %>
+      <%= link_to "Back to posts", posts_path %>
 
-      <%= button_to "Destroy this post", admin_post_path(@post), method: :delete %>
       </div>
 </div>
 <% else %>
