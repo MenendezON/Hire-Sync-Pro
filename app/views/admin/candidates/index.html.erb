@@ -1,0 +1,10 @@
+<h1>Candidates</h1>
+
+<div id="candidates">
+  <% @candidates.each do |candidate| %>
+    <%= render admin_candidate %>
+    <p>
+      <%= link_to "Show this candidate", admin_post_candidate %>
+    </p>
+  <% end %>
+</div>
