@@ -1,0 +1,9 @@
+<h1><%= @post.title %> > New applicant</h1>
+
+<%= render "form", applicant: @applicant %>
+
+<br>
+
+<div>
+  <%= link_to "Back to applicants", admin_post_applicants_path %>
+</div>
