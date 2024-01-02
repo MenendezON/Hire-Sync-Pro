@@ -1,0 +1,7 @@
+<!-- app/views/applicants/_educations_fields.html.erb -->
+<div class="nested-fields">
+  <%= f.text_field :degree, placeholder: 'Degree' %>
+  <%= f.text_field :institution, placeholder: 'Institution' %>
+  <%= f.date_field :graduation_date %>
+  <%= link_to_remove_fields 'Remove', f %>
+</div>

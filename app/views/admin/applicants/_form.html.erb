@@ -1,0 +1,18 @@
+<!-- app/views/applicants/_form.html.erb -->
+<%= form_with(model: @applicant, url: admin_post_applicants_path) do |form| %>
+  <!-- Applicant fields go here -->
+
+  <%= form.fields_for :experiences do |experience_form| %>
+    <%= render 'experiences_fields', f: experience_form %>
+  <% end %>
+
+  <%= link_to_add_fields 'Add Experience', form, :experiences %>
+
+  <%= form.fields_for :educations do |education_form| %>
+    <%= render 'educations_fields', f: education_form %>
+  <% end %>
+
+  <%= link_to_add_fields 'Add Education', form, :educations %>
+
+  <%= form.submit %>
+<% end %>

@@ -1,0 +1,8 @@
+<!-- app/views/applicants/_experiences_fields.html.erb -->
+<div class="nested-fields">
+  <%= f.text_field :title, placeholder: 'Job Title' %>
+  <%= f.text_field :company, placeholder: 'Company' %>
+  <%= f.date_field :start_date %>
+  <%= f.date_field :end_date %>
+  <%= link_to_remove_fields 'Remove', f %>
+</div>

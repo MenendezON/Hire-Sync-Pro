@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_01_01_175812) do
+ActiveRecord::Schema[7.1].define(version: 2024_01_02_010814) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -23,6 +23,20 @@ ActiveRecord::Schema[7.1].define(version: 2024_01_01_175812) do
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "experiences", force: :cascade do |t|
+    t.string "title"
+    t.string "company"
+    t.string "location"
+    t.boolean "current"
+    t.date "start_date"
+    t.date "end_date"
+    t.text "description"
+    t.bigint "applicant_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["applicant_id"], name: "index_experiences_on_applicant_id"
   end
 
   create_table "posts", force: :cascade do |t|
@@ -41,5 +55,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_01_01_175812) do
     t.index ["category_id"], name: "index_posts_on_category_id"
   end
 
+  add_foreign_key "experiences", "applicants"
   add_foreign_key "posts", "categories"
 end
