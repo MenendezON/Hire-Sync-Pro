@@ -20,9 +20,11 @@ ActiveRecord::Schema[7.1].define(version: 2024_01_02_140219) do
   end
 
   create_table "categories", force: :cascade do |t|
-    t.string "name"
+    t.string "name", null: false
+    t.bigint "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_categories_on_user_id"
   end
 
   create_table "educations", force: :cascade do |t|
@@ -56,24 +58,27 @@ ActiveRecord::Schema[7.1].define(version: 2024_01_02_140219) do
     t.string "title"
     t.string "location"
     t.date "deadline"
-    t.text "summary"
-    t.text "duties"
-    t.text "qualifications"
+    t.text "summary", default: "Not available.", null: false
+    t.text "duties", default: "Not available.", null: false
+    t.text "qualifications", default: "Not available.", null: false
     t.text "extrat", default: "Not available.", null: false
-    t.boolean "available", default: true
+    t.boolean "available", default: true, null: false
     t.bigint "category_id", null: false
+    t.bigint "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["category_id"], name: "index_posts_on_category_id"
+    t.index ["user_id"], name: "index_posts_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
-    t.string "full_name"
+    t.string "full_name", default: "User", null: false
     t.string "uid"
     t.string "avatar_url"
     t.string "provider"
+    t.boolean "admin", default: false, null: false
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
@@ -83,7 +88,9 @@ ActiveRecord::Schema[7.1].define(version: 2024_01_02_140219) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "categories", "users"
   add_foreign_key "educations", "applicants"
   add_foreign_key "experiences", "applicants"
   add_foreign_key "posts", "categories"
+  add_foreign_key "posts", "users"
 end

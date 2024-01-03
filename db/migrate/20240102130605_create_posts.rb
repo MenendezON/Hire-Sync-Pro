@@ -9,8 +9,9 @@ class CreatePosts < ActiveRecord::Migration[7.1]
       t.text :duties, null: false, default: "Not available."
       t.text :qualifications, null: false, default: "Not available."
       t.text :extrat, null: false, default: "Not available."
-      t.boolean :available, default: true
+      t.boolean :available, null: false, default: true
       t.references :category, null: false, foreign_key: true
+      t.references :user, null: false, foreign_key: true
       t.timestamps
     end
   end

@@ -22,6 +22,7 @@ class Admin::PostsController < ApplicationController
   # POST /posts or /posts.json
   def create
     @post = Post.new(post_params)
+    @post.user = current_user
 
     if @post.save
       redirect_to admin_posts_path, notice: 'Post created successfully.'

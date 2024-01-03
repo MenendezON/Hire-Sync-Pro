@@ -4,11 +4,14 @@ class Admin::CategoriesController < ApplicationController
 
   # GET /categories or /categories.json
   def index
-    @categories = Category.all
+    @categories = Category.includes(:user).all
+    
   end
 
   # GET /categories/1 or /categories/1.json
   def show
+    # @posts = @category.posts.order(created_at: :desc)
+    # @total = @posts.count()
   end
 
   # GET /categories/new
@@ -23,6 +26,7 @@ class Admin::CategoriesController < ApplicationController
   # POST /categories or /categories.json
   def create
     @category = Category.new(category_params)
+    @category.user = current_user
     if @category.save
       redirect_to admin_categories_path, notice: 'Category created successfully.'
     else
