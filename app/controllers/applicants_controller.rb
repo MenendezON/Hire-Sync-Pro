@@ -1,5 +1,6 @@
 # app/controllers/applicants_controller.rb
 class ApplicantsController < ApplicationController
+  skip_before_action :authenticate_user!
   before_action :set_applicant, only: [:show, :edit, :update, :destroy]
 
   layout 'public_layout'

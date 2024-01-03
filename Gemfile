@@ -22,6 +22,10 @@ gem "turbo-rails"
 
 gem 'turbolinks'
 
+gem 'therubyracer'
+
+gem 'devise'
+
 gem 'jquery-rails'
 
 # Hotwire's modest JavaScript framework [https://stimulus.hotwired.dev]

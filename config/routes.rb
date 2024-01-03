@@ -1,10 +1,17 @@
 Rails.application.routes.draw do
+  devise_for :users
+  authenticated :user do
+    root "admin#index", as: :authenticated_root
+  end
+
   namespace :admin do
+    get '/', to: redirect('/admin/categories'), as: :admin_root
     resources :posts do
       resources :applicants
     end
     resources :categories
   end
+
 
   resources :posts do
     resources :applicants
