@@ -11,6 +11,7 @@ class CreatePosts < ActiveRecord::Migration[7.1]
       t.text :extrat, null: false, default: "Not available."
       t.boolean :available, null: false, default: true
       t.references :category, null: false, foreign_key: true
+      t.references :user, null: false, foreign_key: true
       t.timestamps
     end
   end
