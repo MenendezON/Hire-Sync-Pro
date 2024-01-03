@@ -1,4 +1,4 @@
-<h1>Posts <%= link_to "+", new_admin_post_path %></h1>
+<h1>Posts</h1>
 
 <div id="posts">
 <table class="table table-hover">
@@ -19,7 +19,11 @@
       <td>0</td>
       <td><%= post.deadline %></td>
       <td><%= post.created_at %></td>
-      <td><%= link_to "Show this post", admin_post_path(post) %></td>
+      <% if current_user %>
+        <td><%= link_to "Show this job", admin_post_path(post) %></td>
+      <% else %>
+        <td><%= link_to "Show this job", post_path(post) %></td>
+      <% end %>
     </tr>
   <% end %>
   </table>

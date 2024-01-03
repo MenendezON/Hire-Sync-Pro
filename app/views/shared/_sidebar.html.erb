@@ -6,12 +6,13 @@
   <ul class="list-unstyled ps-0">
     <li class="mb-1">
       <button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#home-collapse" aria-expanded="true">
-        Home
+        Jobs
       </button>
       <div class="collapse show" id="home-collapse">
         <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-          <li><%= link_to "Category", admin_categories_path, class: "link-dark rounded"  %></li>
-          <li><%= link_to "Post", admin_posts_path, class: "link-dark rounded"  %></li>
+          <li><%= link_to "All posts", admin_posts_path, class: "link-dark rounded"  %></li>
+          <li><%= link_to "Add new job", new_admin_post_path, class: "link-dark rounded"  %></li>
+          <li><%= link_to "Categories", admin_categories_path, class: "link-dark rounded"  %></li>
         </ul>
       </div>
     </li>
