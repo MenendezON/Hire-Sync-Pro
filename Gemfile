@@ -21,6 +21,8 @@ gem "importmap-rails"
 gem "turbo-rails"
 
 gem 'cancancan'
+# Gemfile
+gem 'pdf-reader'
 
 gem 'turbolinks'
 

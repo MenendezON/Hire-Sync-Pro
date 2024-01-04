@@ -3,7 +3,10 @@ class Admin::ApplicantsController < ApplicationController
   before_action :set_applicant, only: [:show, :edit, :update, :destroy]
 
   def index
-    @applicants = Applicant.all
+    @applicants = Applicant.all.order(created_at: :desc)
+    if params[:post_id].present?
+      @applicants = Applicant.where(post_id: params[:post_id]).order(created_at: :desc)
+    end
   end
 
   def show

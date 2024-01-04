@@ -1,21 +1,27 @@
-<% if @applicant.nil? %>
+<% if @applicants.nil? %>
   <div class="text-center mt-5">
     <%= image_tag("folder-not-found.png", alt: "Applicant not found", class: "img-fluid") %>
   </div>
 <% else %>
-  <table class="table table-hover">
-  <tr>
-    <th>&sharp;</th>
-    <th>Title</th>
-    <th>Author</th>
-    <th>Deadline</th>
-    <th>Scored</th>
-  </tr>
-  <tr>
-      <td>1</td>
-      <td>1</td>
-      <td>1</td>
-      <td>1</td>
-  </tr>
-  </table>
+  <h1 class='text-center'>List of applicants</h1>
+  <div class="table-responsive">
+    <table class="table table-hover">
+      <tr>
+        <th>&sharp;</th>
+        <th>Title</th>
+        <th>Author</th>
+        <th>Deadline</th>
+        <th>Scored</th>
+      </tr>
+      <% @applicants.each do |applicant| %>
+      <tr>
+        <td><%= applicant.first_name%> <%= applicant.last_name%></td>
+        <td>1</td>
+        <td>1</td>
+        <td>1</td>
+        <td>1</td>
+      </tr>
+      <% end %>
+    </table>
+  </div>
 <% end %>
