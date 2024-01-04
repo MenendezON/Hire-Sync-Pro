@@ -11,7 +11,7 @@ class Post < ApplicationRecord
   validates :duties, presence: true
   validates :qualifications, presence: true
   validates :extrat, presence: true
-  validates :available, presence: true
+  validates :available, presence: false
   validates :category, presence: true
 
   private

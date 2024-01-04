@@ -18,10 +18,10 @@
     <%= f.password_field :password, autocomplete: "new-password", class: 'form-control' %>
     <%= f.label :password %>
     <% if @minimum_password_length %>
-    <em>(<%= @minimum_password_length %> characters minimum)</em>
+    <span id="passwordHelpInline" class="form-text">(<%= @minimum_password_length %> characters minimum)</span>
     <% end %>
   </div>
-
+  
   <div class="form-floating">
     <%= f.password_field :password_confirmation, autocomplete: "new-password", class: 'form-control' %>
     <%= f.label :password_confirmation %>

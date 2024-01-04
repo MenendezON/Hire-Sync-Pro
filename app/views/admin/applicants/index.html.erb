@@ -1,10 +1,21 @@
-<h1>Applicants</h1>
-
-<div id="applicants">
-  <% @applicants.each do |applicant| %>
-    <%= render admin_applicant %>
-    <p>
-      <%= link_to "Show this applicant", admin_post_applicant %>
-    </p>
-  <% end %>
-</div>
+<% if @applicant.nil? %>
+  <div class="text-center mt-5">
+    <%= image_tag("folder-not-found.png", alt: "Applicant not found", class: "img-fluid") %>
+  </div>
+<% else %>
+  <table class="table table-hover">
+  <tr>
+    <th>&sharp;</th>
+    <th>Title</th>
+    <th>Author</th>
+    <th>Deadline</th>
+    <th>Scored</th>
+  </tr>
+  <tr>
+      <td>1</td>
+      <td>1</td>
+      <td>1</td>
+      <td>1</td>
+  </tr>
+  </table>
+<% end %>

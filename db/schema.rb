@@ -10,13 +10,26 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_01_02_140219) do
+ActiveRecord::Schema[7.1].define(version: 2024_01_04_005459) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "applicants", force: :cascade do |t|
+    t.string "first_name"
+    t.string "last_name"
+    t.string "phone"
+    t.string "email"
+    t.string "gender"
+    t.string "address"
+    t.string "language"
+    t.integer "experience"
+    t.string "source"
+    t.string "resume"
+    t.string "cover_letter"
+    t.bigint "post_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["post_id"], name: "index_applicants_on_post_id"
   end
 
   create_table "categories", force: :cascade do |t|
@@ -88,6 +101,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_01_02_140219) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "applicants", "posts"
   add_foreign_key "categories", "users"
   add_foreign_key "educations", "applicants"
   add_foreign_key "experiences", "applicants"

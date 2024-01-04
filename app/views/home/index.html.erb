@@ -6,7 +6,6 @@
   <th>Slug</th>
   <th>Title</th>
   <th>Category</th>
-  <th>Applicants</th>
   <th>Deadline</th>
   <th>Created</th>
   <th>Action</th>
@@ -16,7 +15,6 @@
       <td><%= post.slug %></td>
       <td><%= post.title %></td>
       <td><%= post.category.name %></td>
-      <td>0</td>
       <td><%= post.deadline %></td>
       <td><%= post.created_at %></td>
       <% if current_user %>

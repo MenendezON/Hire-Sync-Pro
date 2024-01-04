@@ -5,6 +5,11 @@ Rails.application.routes.draw do
   # end
 
   namespace :admin do
+    get 'applicants/index'
+    get 'applicants/new'
+    get 'applicants/create'
+    get 'applicants/update'
+    get 'applicants/destroy'
     get '/admin', to: redirect('/admin/categories'), as: :admin_root
     resources :posts do
       resources :applicants

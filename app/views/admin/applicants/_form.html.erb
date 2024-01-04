@@ -1,18 +1,79 @@
 <!-- app/views/applicants/_form.html.erb -->
 <%= form_with(model: @applicant, url: admin_post_applicants_path) do |form| %>
+  <div class="row">
+    <div class="col-6">
   <!-- Applicant fields go here -->
+  <fieldset>
+    <legend>Experience</legend>
+    <div class="input-group mb-3">
+    <%= form.text_field :first_name, placeholder: "First name", class: "form-control" %>
+      <span class="input-group-text">&nbsp;</span>
+      <%= form.text_field :last_name, placeholder: "Last name", class: "form-control" %>
+    </div>
 
+
+    <div class="input-group mb-3">
+      <span class="input-group-text" id="basic-addon1">+221</span>
+      <%= form.text_field :phone, placeholder: "Phone", class: "form-control" %>
+    </div>
+
+    <div class="mb-3">
+      <%= form.email_field :email, placeholder: "Email", class: "form-control" %>
+    </div>
+
+    <div class="mb-3">
+      <%= form.select :gender, options_for_select(['Male', 'Female', 'Other']), {}, class: "form-control" %>
+    </div>
+
+    <div class="mb-3">
+      <%= form.text_field :address, placeholder: "Address", class: "form-control" %>
+    </div>
+
+    <div class="mb-3">
+      <%= form.select :language, options_for_select(['English', 'Spanish', 'French']), {}, class: "form-control" %>
+    </div>
+
+    <div class="mb-3">
+      <%= form.number_field :experience, placeholder: "Experience (years)", class: "form-control" %>
+    </div>
+
+    <div class="mb-3">
+      <%= form.select :source, options_for_select(['Job Board', 'Referral', 'LinkedIn']), {}, class: "form-control" %>
+    </div>
+
+    <div class="mb-3">
+      <%= form.file_field :resume, class: "form-control" %>
+    </div>
+
+    <div class="mb-3">
+      <%= form.file_field :cover_letter, class: "form-control" %>
+    </div>
+  </fieldset>
+  </div>
+
+  <div class="col-6">
+  <fieldset>
+  <legend>Experience</legend>
   <%= form.fields_for :experiences do |experience_form| %>
     <%= render 'experiences_fields', f: experience_form %>
   <% end %>
 
   <%= link_to_add_fields 'Add Experience', form, :experiences %>
+  </fieldset>
 
+  <fieldset>
+  <legend>Education</legend>
   <%= form.fields_for :educations do |education_form| %>
     <%= render 'educations_fields', f: education_form %>
   <% end %>
 
   <%= link_to_add_fields 'Add Education', form, :educations %>
-
-  <%= form.submit %>
+  </fieldset>
+  </div>
+  </div>
+  <div class="row">
+    <div class="col-12">
+      <%= form.submit "Send my application", class: "btn btn-primary" %>
+    </div>
+  </div>
 <% end %>
