@@ -5,10 +5,12 @@ class Post < ApplicationRecord
   has_many :applicants, dependent: :destroy
 
   validates :title, presence: true
-  validates :location, presence: true
+  validates :country, presence: true
+  validates :city, presence: true
   validates :deadline, presence: true
   validates :summary, presence: true
   validates :duties, presence: true
+  validates :contract, presence: true
   validates :qualifications, presence: true
   validates :extrat, presence: true
   validates :available, presence: false

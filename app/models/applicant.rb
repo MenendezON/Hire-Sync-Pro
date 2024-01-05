@@ -1,6 +1,9 @@
 class Applicant < ApplicationRecord
   belongs_to :post
 
+  has_one_attached :resume, dependent: :destroy
+  has_one_attached :cover_letter, dependent: :destroy
+
   has_many :experiences
   has_many :educations
 

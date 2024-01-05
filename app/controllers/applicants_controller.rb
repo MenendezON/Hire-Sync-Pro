@@ -57,11 +57,7 @@ class ApplicantsController < ApplicationController
   def fill_fields_from_resume
     resume_path = params[:applicant][:resume].tempfile.path
     parsed_data = @resume_parser.parse_resume(resume_path)
-    puts 'parsed data'
-    puts parsed_data
     @applicant.assign_attributes(parsed_data)
-    puts 'applicant'
-    puts @applicant
   end
 
   def set_applicant

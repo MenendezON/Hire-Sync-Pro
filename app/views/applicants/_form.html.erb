@@ -1,5 +1,5 @@
 <!-- app/views/applicants/_form.html.erb -->
-<%= form_with(model: @applicant, url: post_applicants_path, class: "row g-3") do |form| %>
+<%= form_with(model: @applicant, local: true, html: { multipart: true }, url: post_applicants_path, class: "row g-3") do |form| %>
   <div class="row">
     <div class="col-12 text-end">
       <%= form.submit "Send my application", class: "btn btn-primary" %>
