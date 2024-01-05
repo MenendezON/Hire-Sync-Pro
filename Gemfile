@@ -21,6 +21,11 @@ gem "importmap-rails"
 gem "turbo-rails"
 
 gem 'cancancan'
+# Gemfile
+gem 'pdf-reader'
+
+# install this for mail and phone links
+gem 'actionview'
 
 gem 'turbolinks'
 

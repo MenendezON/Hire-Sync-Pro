@@ -10,6 +10,7 @@ Rails.application.routes.draw do
       resources :applicants
     end
     resources :categories
+    resources :applicants
   end
 
   resources :posts do

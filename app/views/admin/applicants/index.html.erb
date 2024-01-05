@@ -1,10 +1,49 @@
-<h1>Applicants</h1>
-
-<div id="applicants">
-  <% @applicants.each do |applicant| %>
-    <%= render admin_applicant %>
-    <p>
-      <%= link_to "Show this applicant", admin_post_applicant %>
-    </p>
-  <% end %>
-</div>
+<% if @applicants.nil? %>
+  <div class="text-center mt-5">
+    <%= image_tag("folder-not-found.png", alt: "Applicant not found", class: "img-fluid") %>
+  </div>
+<% else %>
+  <h1 class='text-center'>List of applicants</h1>
+  <div class="table-responsive">
+    <table class="table table-hover">
+      <tr>
+        <th>&sharp;</th>
+        <th>Job title</th>
+        <th>First name</th>
+        <th>Last name</th>
+        <th>Gender</th>
+        <th>Email</th>
+        <th>Phone</th>
+        <th>Address</th>
+        <th>Resume</th>
+        <th>Cover letter</th>
+      </tr>
+      <% @applicants.each_with_index do |applicant, index| %>
+      <tr>
+        <td><%= index+1 %></td>
+        <td><%= link_to applicant.post.title, admin_post_url(applicant.post) %></td>
+        <td><%= applicant.first_name %></td>
+        <td><%= applicant.last_name %></td>
+        <td><%= applicant.gender %></td>
+        <td><%= mail_to applicant.email, applicant.email %></td>
+        <td><%= applicant.phone %></td>
+        <td><%= applicant.address %></td>
+        <td>
+        <% if applicant.resume.attached? %>
+          <%= link_to applicant.resume.filename, url_for(applicant.resume) %>
+        <% else %>
+          non
+        <% end %>
+        </td>
+        <td>
+        <% if applicant.cover_letter.attached? %>
+          <%= link_to applicant.cover_letter.filename, url_for(applicant.cover_letter) %>
+        <% else %>
+          Not found
+        <% end %>
+        </td>
+      </tr>
+      <% end %>
+    </table>
+  </div>
+<% end %>

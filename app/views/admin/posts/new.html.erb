@@ -2,13 +2,29 @@
 
 <%= form_with model: @post, url: admin_posts_path do |form| %>
   <div class="field">
+  <%= form.label :organization, class: "text-lg font-medium mb-2" %>
+  <%= form.text_field :organization, placeholder:"Organization" %>
+</div>
+  <div class="field">
     <%= form.label :title, class: "text-lg font-medium mb-2" %>
     <%= form.text_field :title, placeholder:"Job's title" %>
   </div>
   <div class="field">
     <%= form.label :location, class: "text-lg font-medium mb-2" %>
-    <%= form.text_field :location, placeholder:"Job's location" %>
+    <%= form.text_field :country, placeholder:"Job's location" %>
   </div>
+  <div class="field">
+  <%= form.label :city, class: "text-lg font-medium mb-2" %>
+  <%= form.text_field :city, placeholder:"City" %>
+</div>
+<div class="field">
+  <%= form.select :contract, options_for_select(['Stage', 'CDD', 'CDI', 'Consultant', 'Prestation', 'Autre']), {}, class: "form-control" %>
+</div>
+
+<div class="field">
+<%= form.number_field :length_contract, placeholder: "Experience (years)", class: "form-control" %>
+</div
+
   <div class="field">
     <%= form.label :deadline, class: "text-lg font-medium mb-2" %>
     <%= form.date_field :deadline, placeholder:"Job's deadline" %>
