@@ -11,7 +11,7 @@ class DeviseCreateUsers < ActiveRecord::Migration[7.1]
       t.string :avatar_url
       t.string :provider
 
-      t.string :role
+      t.integer :role, default: 0
 
       ## Recoverable
       t.string   :reset_password_token
