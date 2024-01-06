@@ -1,6 +1,8 @@
 # app/controllers/applicants_controller.rb
 class Admin::ApplicantsController < ApplicationController
   before_action :set_applicant, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!
+  before_action :authorize_admin!
 
   def index
     @applicants = Applicant.all.order(created_at: :desc)
@@ -45,6 +47,9 @@ class Admin::ApplicantsController < ApplicationController
 
   private
 
+  def authorize_admin!
+    redirect_to root_path, alert: 'Access Denied' unless current_user.admin? || current_user.moderator?
+  end
   def set_applicant
     @applicant = Applicant.find(params[:id])
   end

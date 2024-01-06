@@ -1,6 +1,8 @@
 class Admin::PostsController < ApplicationController
   before_action :set_post, only: %i[ show edit update destroy ]
   protect_from_forgery with: :exception
+  before_action :authenticate_user!
+  before_action :authorize_admin!
   skip_before_action :verify_authenticity_token
   # GET /posts or /posts.json
   def index
@@ -58,6 +60,10 @@ class Admin::PostsController < ApplicationController
   private
   def find_post
     @post = Post.find_by(slug: params[:slug])
+  end
+
+  def authorize_admin!
+    redirect_to root_path, alert: 'Access Denied' unless current_user.admin? || current_user.moderator?
   end
   
       # Use callbacks to share common setup or constraints between actions.

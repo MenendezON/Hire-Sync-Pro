@@ -1,8 +1,10 @@
 Rails.application.routes.draw do
+ 
   devise_for :users
   # authenticated :user do
   #   root "admin/categories#index", as: :authenticated_root
   # end
+  resources :admin, only: [:index, :create, :update]
 
   namespace :admin do
     get '/admin', to: redirect('/admin/categories'), as: :admin_root
@@ -13,10 +15,12 @@ Rails.application.routes.draw do
     resources :applicants
   end
 
-  resources :posts do
+  # public spot
+  resources :posts, only: [:index, :show] do
     resources :applicants
   end
 
+  
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
