@@ -17,7 +17,7 @@
       <td><%= post.category.name %></td>
       <td><%= post.deadline %></td>
       <td><%= post.created_at %></td>
-      <% if current_user %>
+      <% if current_user && !current_user.user? %>
         <td><%= link_to "Show this job", admin_post_path(post) %></td>
       <% else %>
         <td><%= link_to "Show this job", post_path(post) %></td>
@@ -26,7 +26,16 @@
   <% end %>
   </table>
 </div>
-
+<div>
+<% if user_signed_in? %>
+    <%= current_user.email %>
+    <%= link_to "Admin dashboard", admin_index_path if current_user.admin? || current_user.moderator? %>
+    <%= link_to "Sign out", destroy_user_session_path, data:{turbo: "false"}, method: :delete %></li>
+<% else %>
+    <%= link_to "Sign in", new_user_session_path %>
+    <%= link_to "Sign up", new_user_registration_path %>
+<% end %>
+</div>
 
 
 

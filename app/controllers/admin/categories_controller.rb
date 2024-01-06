@@ -1,6 +1,7 @@
 class Admin::CategoriesController < ApplicationController
   before_action :set_category, only: %i[ show edit update destroy ]
-  
+  before_action :authenticate_user!
+  before_action :authorize_admin!
 
   # GET /categories or /categories.json
   def index
@@ -58,6 +59,9 @@ class Admin::CategoriesController < ApplicationController
   end
 
   private
+  def authorize_admin!
+    redirect_to root_path, alert: 'Access Denied' unless current_user.admin? || current_user.moderator?
+  end
     # Use callbacks to share common setup or constraints between actions.
     def set_category
       @category = Category.find(params[:id])
