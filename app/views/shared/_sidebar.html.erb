@@ -40,6 +40,7 @@
         <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
           <li><%= link_to "Edit", edit_user_registration_path, class: "link-dark rounded" %></li>
           <li><%= link_to "Logout", destroy_user_session_path, class: "link-dark rounded" ,data:{turbo: "false"}, method: :delete %></li>
+          <li>I am a [<%= current_user.role %>]</li>
         </ul>
       </div>
     </li>
