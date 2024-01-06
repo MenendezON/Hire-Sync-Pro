@@ -8,6 +8,8 @@ class Ability
   
     if user.role.admin?
       can :manage, :all
+    elsif user.role.moderator?
+      can :write, :all
     else
       can :read, :all
       # Additional rules for non-admin users
