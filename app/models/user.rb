@@ -10,6 +10,7 @@ class User < ApplicationRecord
     self.role ||= :user 
   end
 
+  belongs_to :company
   has_many :posts, dependent: :destroy
   has_many :categories, dependent: :destroy
 end

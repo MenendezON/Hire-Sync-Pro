@@ -28,12 +28,10 @@
 </div>
 <div>
 <% if user_signed_in? %>
-    <%= current_user.email %>
+    <strong><%= current_user.company.name %></strong> - <%= current_user.email %>
     <%= link_to "Admin dashboard", admin_index_path if current_user.admin? || current_user.moderator? %>
-    <%= link_to "Sign out", destroy_user_session_path, data:{turbo: "false"}, method: :delete %></li>
 <% else %>
     <%= link_to "Sign in", new_user_session_path %>
-    <%= link_to "Sign up", new_user_registration_path %>
 <% end %>
 </div>
 

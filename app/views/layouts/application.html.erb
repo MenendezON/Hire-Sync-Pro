@@ -10,75 +10,74 @@
     <%= csp_meta_tag %>
 
     <%= stylesheet_link_tag 'application', 'css/bootstrap.min', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_link_tag 'plugins/fontawesome-free/css/all.min.css' %>
+    <% if !current_user %>
     <style>
 
       html,
-body {
-  height: 100%;
-}
+      body {
+        height: 100%;
+      }
 
-body {
-  display: flex;
-  align-items: center;
-  padding-top: 40px;
-  padding-bottom: 40px;
-  background-color: #f5f5f5;
-}
+      body {
+        display: flex;
+        align-items: center;
+        padding-top: 40px;
+        padding-bottom: 40px;
+        background-color: #f5f5f5;
+      }
 
-.form-signin {
-  width: 100%;
-  max-width: 330px;
-  padding: 15px;
-  margin: auto;
-  display:flex;
-  flex-direction:column;
-}
+      .form-signin {
+        width: 100%;
+        max-width: 330px;
+        padding: 15px;
+        margin: auto;
+        display:flex;
+        flex-direction:column;
+      }
 
-.form-signin .checkbox {
-  font-weight: 400;
-}
+      .form-signin .checkbox {
+        font-weight: 400;
+      }
 
-.form-signin .form-floating:focus-within {
-  z-index: 2;
-}
+      .form-signin .form-floating:focus-within {
+        z-index: 2;
+      }
 
-.form-signin input[type="email"] {
-  margin-bottom: -1px;
-  border-bottom-right-radius: 0;
-  border-bottom-left-radius: 0;
-}
+      .form-signin input[type="email"] {
+        margin-bottom: -1px;
+        border-bottom-right-radius: 0;
+        border-bottom-left-radius: 0;
+      }
 
-.form-signin input[type="password"] {
-  margin-bottom: 10px;
-  border-top-left-radius: 0;
-  border-top-right-radius: 0;
-}
+      .form-signin input[type="password"] {
+        margin-bottom: 10px;
+        border-top-left-radius: 0;
+        border-top-right-radius: 0;
+      }
     </style>
+    <% end %>
 
-  
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
-    <% if current_user %>
-      <main>
-      <%= render "shared/sidebar" %>
-      <div class="b-example-divider">
-      <%= render "shared/top_bar" %>
-      <div class="container-fluid">
-    <% end %> 
+      <div class="container"> 
+      
+      <% if current_user %>
+      <%= render 'base/navbar' %>
+      <% end %>
         <% if notice %> 
           <p class="alert alert-success"><%= notice %></p> 
         <% end %>
         <% if alert %> 
           <p class="alert alert-danger"><%= alert %></p> 
         <% end %>
-        <%= yield %>
-    <% if current_user %> 
+        <div class="row>
+          <div class="col-12">
+            <%= yield %>
+          </div>
+        </div>
       </div>
-      </div>
-      </main>
-    <% end %>
-  
   </body>
 </html>
