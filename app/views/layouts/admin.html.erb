@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Hire Sync Pro</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="csrf-token" content="<%= form_authenticity_token %>" />
+
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <!-- Google Font: Source Sans Pro -->
+    <%= stylesheet_link_tag 'https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback' %>
+    <!-- Font Awesome Icons -->
+    <%= stylesheet_link_tag 'plugins/fontawesome-free/css/all.min.css' %>
+    <!-- Theme style -->
+    <%= stylesheet_link_tag 'dist/css/adminlte.min.css' %>
+    
+  </head>
+
+  <body data-scrollbar-auto-hide="n" class="hold-transition sidebar-mini layout-fixed">
+  <div class="wrapper">
+  <div class="preloader flex-column justify-content-center align-items-center">
+    <%= image_tag("dist/img/AdminLTELogo.png", class: "animation__shake", alt: "AdminLTELogo", height: "60", width: "60") %>
+  </div>
+  <%= render "base/header" %>
+  <%= render "base/sidebar" %>
+  
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+    <% if notice %> 
+      <p class="alert alert-success"><%= notice %></p> 
+    <% end %>
+    <% if alert %> 
+      <p class="alert alert-danger"><%= alert %></p> 
+    <% end %>
+    <%= yield %>
+    </div>
+    <!-- /.content-wrapper -->
+  </div>
+  <!-- ./wrapper -->
+  
+  <%= render "base/control_sidebar" %>
+  <%= render "base/footer" %>
+
+  <%= javascript_include_tag 'plugins/jquery/jquery.min.js' %>
+  <!-- Bootstrap 4 -->
+  <%= javascript_include_tag 'plugins/bootstrap/js/bootstrap.bundle.min.js' %>
+  <!-- AdminLTE App -->
+  <%= javascript_include_tag 'dist/js/adminlte.min.js' %>
+  </body>
+</html>

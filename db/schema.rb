@@ -68,6 +68,24 @@ ActiveRecord::Schema[7.1].define(version: 2024_01_05_012550) do
     t.index ["user_id"], name: "index_categories_on_user_id"
   end
 
+  create_table "companies", force: :cascade do |t|
+    t.string "name"
+    t.text "description"
+    t.string "address"
+    t.string "city"
+    t.string "state"
+    t.string "zip_code"
+    t.string "email"
+    t.string "phone_number"
+    t.string "website"
+    t.string "industry"
+    t.date "establishment_date"
+    t.decimal "revenue"
+    t.string "logo_url"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "educations", force: :cascade do |t|
     t.string "institution"
     t.string "degree"
@@ -123,12 +141,14 @@ ActiveRecord::Schema[7.1].define(version: 2024_01_05_012550) do
     t.string "uid"
     t.string "avatar_url"
     t.string "provider"
-    t.string "role"
+    t.integer "role", default: 0
+    t.bigint "company_id", default: 1, null: false
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["company_id"], name: "index_users_on_company_id"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
@@ -141,4 +161,5 @@ ActiveRecord::Schema[7.1].define(version: 2024_01_05_012550) do
   add_foreign_key "experiences", "applicants"
   add_foreign_key "posts", "categories"
   add_foreign_key "posts", "users"
+  add_foreign_key "users", "companies"
 end

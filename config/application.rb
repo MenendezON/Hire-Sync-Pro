@@ -15,7 +15,9 @@ module HireSyncPro
     # not contain `.rb` files, or that should not be reloaded or eager loaded.
     # Common ones are `templates`, `generators`, or `middleware`, for example.
     config.autoload_lib(ignore: %w(assets tasks))
-    config.autoload_paths += %W(#{config.root}/app/services)
+
+    config.assets.precompile += %w( css/bootstrap.min.css js/bootstrap.bundle.js custom.js plugins/fontawesome-free/css/all.min.css dist/css/adminlte.min.css plugins/jquery/jquery.min.js plugins/bootstrap/js/bootstrap.bundle.min.js dist/js/adminlte.min.js)
+
 
 
     # Configuration for the application, engines, and railties goes here.

@@ -13,6 +13,8 @@ class DeviseCreateUsers < ActiveRecord::Migration[7.1]
 
       t.integer :role, default: 0
 
+      t.references :company, null: false, default: 1, foreign_key: true
+
       ## Recoverable
       t.string   :reset_password_token
       t.datetime :reset_password_sent_at

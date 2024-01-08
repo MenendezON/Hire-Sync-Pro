@@ -4,16 +4,19 @@ Rails.application.routes.draw do
   # authenticated :user do
   #   root "admin/categories#index", as: :authenticated_root
   # end
-  resources :admin, only: [:index, :create, :update]
 
+  resources :admin, only: [:index] 
   namespace :admin do
-    get '/admin', to: redirect('/admin/categories'), as: :admin_root
+    get '/admin', to: redirect('/admin'), as: :admin_root
     resources :posts do
       resources :applicants
     end
     resources :categories
     resources :applicants
+    resources :users, only: [:index, :create, :update]
+    resources :companies
   end
+
 
   # public spot
   resources :posts, only: [:index, :show] do
