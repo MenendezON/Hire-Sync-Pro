@@ -4,12 +4,12 @@ class ApplicantsController < ApplicationController
   before_action :set_applicant, only: [:show, :edit, :update, :destroy]
   before_action :initialize_parsers, only: [:create]
 
+  layout 'public'
+
   def initialize_parsers
     @resume_parser = ResumeParserService.new
     # Initialize other parsers if needed
   end
-
-  layout 'public_layout'
 
   def index
     redirect_to post_path(params[:post_id])

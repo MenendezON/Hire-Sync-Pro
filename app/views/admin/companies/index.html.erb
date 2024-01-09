@@ -18,5 +18,69 @@
 
     <!-- Main content -->
 <section class="content">
-
+<div class="row">
+<% @companies.each do |company| %>
+<div class="col-md-6">
+            <!-- Widget: user widget style 1 -->
+            <div class="card card-widget widget-user">
+              <!-- Add the bg color to the header using any of the bg-* classes -->
+              <div class="widget-user-header bg-info">
+                <h2 class="widget-user-username">
+                  <%= link_to company.name, admin_company_path(company), style: "color: white"  %>
+                </h2>
+                <h5 class="widget-user-desc"><%= company.industry %></h5>
+              </div>
+              <div class="widget-user-image">
+                <%= image_tag(company.logo_url, class: "img-circle elevation-2", alt: "Company logo") %>
+              </div>
+              <div class="card-footer">
+                <div class="row">
+                  <div class="col-sm-4 border-right">
+                    <div class="description-block">
+                      <h5 class="description-header"><%= company.city %></h5>
+                      <span class="description-text">City</span>
+                    </div>
+                    <!-- /.description-block -->
+                  </div>
+                  <!-- /.col -->
+                  <div class="col-sm-4 border-right">
+                    <div class="description-block">
+                      <h5 class="description-header"><%= company.revenue %>F CFA</h5>
+                      <span class="description-text">Revenue</span>
+                    </div>
+                    <!-- /.description-block -->
+                  </div>
+                  <!-- /.col -->
+                  <div class="col-sm-4">
+                    <div class="description-block">
+                      <h5 class="description-header"><%= mail_to company.email, style: "color: black"  %></h5>
+                      <span class="description-text">Email</span>
+                    </div>
+                    <!-- /.description-block -->
+                  </div>
+                  <!-- /.col -->
+                </div>
+                <div class="row">
+                  <div class="col-sm-6 border-right">
+                    <div class="description-block">
+                      <h5 class="description-header"><%= link_to 'Edit', edit_admin_company_path(company) %></h5>
+                    </div>
+                    <!-- /.description-block -->
+                  </div>
+                  <!-- /.col -->
+                  <div class="col-sm-6">
+                    <div class="description-block">
+                      <h5 class="description-header"><%= link_to 'Destroy', admin_company_path(company), method: :delete, data: { confirm: 'Are you sure?' } %></h5>
+                    </div>
+                    <!-- /.description-block -->
+                  </div>
+                  <!-- /.col -->
+                </div>
+                <!-- /.row -->
+              </div>
+            </div>
+            <!-- /.widget-user -->
+          </div>
+  <% end %>
+  </div>
 </section>

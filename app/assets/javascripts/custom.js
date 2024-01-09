@@ -5,6 +5,7 @@ $(document).on('turbolinks:load', function() {
   });
 
   $('.add-fields').on('click', function(event) {
+alert('hello');
     var time = new Date().getTime();
     var regexp = new RegExp($(this).data('id'), 'g');
     $(this).before($(this).data('fields').replace(regexp, time));

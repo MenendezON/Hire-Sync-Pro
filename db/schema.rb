@@ -115,7 +115,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_01_05_012550) do
   create_table "posts", force: :cascade do |t|
     t.string "slug"
     t.string "title"
-    t.string "organization"
     t.string "country"
     t.string "city"
     t.date "deadline"
@@ -128,9 +127,11 @@ ActiveRecord::Schema[7.1].define(version: 2024_01_05_012550) do
     t.boolean "available", default: false
     t.bigint "category_id", null: false
     t.bigint "user_id", null: false
+    t.bigint "company_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["category_id"], name: "index_posts_on_category_id"
+    t.index ["company_id"], name: "index_posts_on_company_id"
     t.index ["user_id"], name: "index_posts_on_user_id"
   end
 
@@ -155,11 +156,11 @@ ActiveRecord::Schema[7.1].define(version: 2024_01_05_012550) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
-  add_foreign_key "applicants", "posts"
   add_foreign_key "categories", "users"
   add_foreign_key "educations", "applicants"
   add_foreign_key "experiences", "applicants"
   add_foreign_key "posts", "categories"
+  add_foreign_key "posts", "companies"
   add_foreign_key "posts", "users"
   add_foreign_key "users", "companies"
 end

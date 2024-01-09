@@ -1,0 +1,15 @@
+<div class="content">
+<!-- app/views/companies/show.html.erb -->
+<%= image_tag(@company.logo_url) %>
+<h1>Name: <%= @company.name %></h1>
+
+<p><strong>Description:</strong> <%= @company.description %></p>
+<!-- Add similar sections for other attributes -->
+
+<p><strong>Establishment Date:</strong> <%= @company.establishment_date %></p>
+<p><strong>Phone number:</strong> <%= @company.phone_number %></p>
+<p><strong>Revenue:</strong> <%= @company.revenue %></p>
+
+<%= link_to 'Edit', edit_admin_company_path(@company) %> |
+<%= link_to 'Back', admin_companies_path %>
+</div>

@@ -3,7 +3,6 @@ class CreatePosts < ActiveRecord::Migration[7.1]
     create_table :posts do |t|
       t.string :slug
       t.string :title
-      t.string :organization
       t.string :country
       t.string :city
       t.date :deadline
@@ -16,6 +15,7 @@ class CreatePosts < ActiveRecord::Migration[7.1]
       t.boolean :available, default: false
       t.references :category, null: false, foreign_key: true
       t.references :user, null: false, foreign_key: true
+      t.references :company, null: false, foreign_key: true
       t.timestamps
     end
   end

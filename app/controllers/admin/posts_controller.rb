@@ -4,9 +4,11 @@ class Admin::PostsController < ApplicationController
   before_action :authenticate_user!
   before_action :authorize_admin!
   skip_before_action :verify_authenticity_token
+
+  layout 'admin'
   # GET /posts or /posts.json
   def index
-    @posts = Post.includes(:category).all.order(created_at: :desc)
+    @posts = Post.includes(:category).where(company: current_user.company).order(created_at: :desc)
   end
 
   # GET /posts/1 or /posts/1.json
@@ -26,11 +28,14 @@ class Admin::PostsController < ApplicationController
   def create
     @post = Post.new(post_params)
     @post.user = current_user
+    @post.company = current_user.company
 
     if @post.save
       redirect_to admin_posts_path, notice: 'Post created successfully.'
     else
-      render 'new'
+      flash[:error] = @post.errors.full_messages.join(', ')
+      Rails.logger.error(@post.errors.full_messages.join(', '))
+      render :new
     end
   end
 
@@ -82,6 +87,6 @@ class Admin::PostsController < ApplicationController
   
       # Only allow a list of trusted parameters through.
   def post_params
-    params.require(:post).permit(:title, :country, :city, :organization, :deadline, :contract, :summary, :length_contract, :duties, :qualifications, :extrat, :available, :category_id)
+    params.require(:post).permit(:title, :country, :city, :deadline, :contract, :summary, :length_contract, :duties, :qualifications, :extrat, :available, :category_id)
   end
 end

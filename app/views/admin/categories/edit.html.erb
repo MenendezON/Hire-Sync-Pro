@@ -1,10 +1,13 @@
 <h1>Editing category</h1>
 
-<%= render "form", category: @category %>
-
-<br>
+<%= form_with model: @category, url: admin_categories_path do |form| %>
+  <div class="field">
+    <%= form.label :name, class: "text-lg font-medium mb-2" %>
+    <%= form.text_field :name, placeholder:"Category's name" %>
+  </div>
+  <%= form.submit "Save", class: "actions" %>
+<% end %>
 
 <div>
-  <%= link_to "Show this category", @category %> |
-  <%= link_to "Back to categories", categories_path %>
+  <%= link_to "Back to categories", admin_categories_path %>
 </div>

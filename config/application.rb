@@ -16,8 +16,9 @@ module HireSyncPro
     # Common ones are `templates`, `generators`, or `middleware`, for example.
     config.autoload_lib(ignore: %w(assets tasks))
 
-    config.assets.precompile += %w( css/bootstrap.min.css js/bootstrap.bundle.js custom.js plugins/fontawesome-free/css/all.min.css dist/css/adminlte.min.css plugins/jquery/jquery.min.js plugins/bootstrap/js/bootstrap.bundle.min.js dist/js/adminlte.min.js)
-
+    config.assets.precompile += %w( plugins/icheck-bootstrap/icheck-bootstrap.min.css css/bootstrap.min.css plugins/fontawesome-free/css/all.min.css dist/css/adminlte.min.css )
+    config.assets.precompile += %w( js/bootstrap.bundle.js custom.js plugins/jquery/jquery.min.js plugins/bootstrap/js/bootstrap.bundle.min.js dist/js/adminlte.min.js)
+    
 
 
     # Configuration for the application, engines, and railties goes here.

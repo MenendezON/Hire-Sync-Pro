@@ -1,27 +1,64 @@
-<main class="form-signin">
-<h1 class="h3 mb-3 fw-normal text-center">Sign in</h1>
-
-<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-
-  <div class="form-floating">
-    <%= f.email_field :email, autocomplete: "email", class: 'form-control' %>
-    <%= f.label :email %>
-  </div>
-
-  <div class="form-floating">
-    <%= f.password_field :password, autocomplete: "current-password", class: 'form-control' %>
-    <%= f.label :password %>
-  </div>
-
-  <% if devise_mapping.rememberable? %>
-    <div class="checkbox mb-3">
-      <%= f.check_box :remember_me %>
-      <%= f.label :remember_me %>
+<div class="login-box">
+  <!-- /.login-logo -->
+  <div class="card card-outline card-primary">
+    <div class="card-header text-center">
+      <a href="../../index2.html" class="h1"><b>Admin</b>LTE</a>
     </div>
-  <% end %>
-    <%= f.submit "Log in", class: 'w-100 btn btn-lg btn-primary' %>
-  
-<% end %>
+    <div class="card-body">
+      <p class="login-box-msg">Sign in to start your session</p>
 
-<p class='mt-5 mb-3 text-muted text-center'><%= render "devise/shared/links" %></p>
-</main>
+      <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+        <div class="input-group mb-3">
+          <%= f.email_field :email, autocomplete: "email", placeholder: "Email", class: 'form-control' %>
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <span class="fas fa-envelope"></span>
+            </div>
+          </div>
+        </div>
+        <div class="input-group mb-3">
+          <%= f.password_field :password, autocomplete: "current-password", placeholder:"Password", class: 'form-control' %>
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <span class="fas fa-lock"></span>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-8">
+          <% if devise_mapping.rememberable? %>
+            <div class="icheck-primary">
+              <%= f.check_box :remember_me, id:"remember_me" %>
+              <%= label_tag :remember_me do %>
+                Remember Me
+              <% end %>
+            </div>
+          <% end %>
+          </div>
+          <!-- /.col -->
+          <div class="col-4">
+            <%= f.submit "Sign In", class: 'btn btn-primary btn-block' %>
+          </div>
+          <!-- /.col -->
+        </div>
+      <% end %>
+
+      <!--div class="social-auth-links text-center mt-2 mb-3">
+        <a href="#" class="btn btn-block btn-danger">
+          <i class="fab fa-google-plus mr-2"></i> Sign in using Google+
+        </a>
+      </div-->
+      <!-- /.social-auth-links -->
+
+      <p class="mb-1">
+        <a href="forgot-password.html">I forgot my password</a>
+      </p>
+      <p class="mb-0">
+        <a href="register.html" class="text-center">Register a new membership</a>
+      </p>
+    </div>
+    <!-- /.card-body -->
+  </div>
+  <!-- /.card -->
+</div>
+<!-- /.login-box -->

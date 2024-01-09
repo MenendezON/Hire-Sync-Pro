@@ -2,6 +2,7 @@ class Post < ApplicationRecord
   before_save :generate_slug
   belongs_to :category
   belongs_to :user
+  belongs_to :company
   has_many :applicants, dependent: :destroy
 
   validates :title, presence: true

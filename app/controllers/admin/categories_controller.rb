@@ -3,9 +3,9 @@ class Admin::CategoriesController < ApplicationController
   before_action :authenticate_user!
   before_action :authorize_admin!
 
-  # GET /categories or /categories.json
+  layout 'admin'
   def index
-    @categories = Category.includes(:user).where(user_id: current_user)
+    @categories = current_user.company.users.map(&:categories).flatten.uniq
     @category = Category.new
   end
 
@@ -37,14 +37,10 @@ class Admin::CategoriesController < ApplicationController
 
   # PATCH/PUT /categories/1 or /categories/1.json
   def update
-    respond_to do |format|
-      if @category.update(category_params)
-        format.html { redirect_to admin_category_url(@category), notice: "Category was successfully updated." }
-        format.json { render :show, status: :ok, location: @category }
-      else
-        format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @category.errors, status: :unprocessable_entity }
-      end
+    if @category.update(category_params)
+      redirect_to admin_catgories_path, notice: 'Category updated'
+    else
+      redirect_to admin_categories_path, notice: 'Unable to update category'
     end
   end
 

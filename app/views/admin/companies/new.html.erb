@@ -1,0 +1,11 @@
+<!-- app/views/companies/new.html.erb -->
+
+<h1>New Company</h1>
+
+<%= form_with(model: @company, url: admin_companies_path, method: :post) do |form| %>
+  <%= render 'form', form: form %>
+
+  <div class="actions">
+    <%= form.submit 'Create Company' %>
+  </div>
+<% end %>

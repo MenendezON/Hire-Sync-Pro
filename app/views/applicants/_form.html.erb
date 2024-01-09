@@ -1,89 +1,95 @@
 <!-- app/views/applicants/_form.html.erb -->
-<%= form_with(model: @applicant, local: true, html: { multipart: true }, url: post_applicants_path, class: "row g-3") do |form| %>
+<%= form_with(model: @applicant, local: true, html: { multipart: true }, url: post_applicants_path) do |form| %>
+  <div class="row">
+    <div class="col-sm-12">
+      <%= form.submit "Send my application", class: "btn btn-primary" %>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-4">
+      <label for="first_name" class="form-label">First name</label>
+      <%= form.text_field :first_name, id: "first_name", placeholder: "First name", class: "form-control" %>
+    </div>
+
+    <div class="col-sm-4">
+      <label for="last_name" class="form-label">Last name</label>
+      <%= form.text_field :last_name, id: "last_name", placeholder: "Last name", class: "form-control" %>
+    </div>
+
+    <div class="col-sm-4">
+      <label for="gender" class="form-label">Gender</label>
+      <%= form.select :gender, options_for_select(['Male', 'Female', 'Other']), {}, id: "gender", class: "form-control" %>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-4">
+      <label for="phone" class="form-label">Phone</label>
+      <%= form.text_field :phone, id: "phone", placeholder: "Phone", class: "form-control" %>
+    </div>
+
+    <div class="col-md-4">
+      <label for="email" class="form-label">Email</label>
+      <%= form.email_field :email, id: "email", placeholder: "Email", class: "form-control" %>
+    </div>
+
+    <div class="col-md-4">
+    <label for="address" class="form-label">Address</label>
+      <%= form.text_field :address, id: "address",placeholder: "Address", class: "form-control" %>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-4">
+      <label for="language" class="form-label">Language</label>
+      <%= form.select :language, options_for_select(['English', 'Spanish', 'French']), {}, id: "language", class: "form-control" %>
+    </div>
+
+    <div class="col-md-4">
+    <label for="nb_exp" class="form-label">Length of experience</label>
+      <%= form.number_field :experience, id: "nb_exp", placeholder: "Experience (years)", class: "form-control" %>
+    </div>
+
+    <div class="col-md-4">
+      <label for="source" class="form-label">Source</label>
+      <%= form.select :source, options_for_select(['Job Board', 'Referral', 'LinkedIn']), {}, id: "source", class: "form-control" %>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-6">
+      <label for="resume" class="form-label">Upload the resume</label>
+      <%= form.file_field :resume, id: "resume", class: "form-control" %>
+    </div>
+
+    <div class="col-md-6">
+      <label for="cover_letter" class="form-label">Cover letter</label>
+      <%= form.file_field :cover_letter, id: "cover_letter", class: "form-control" %>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12">
+      <fieldset>
+        <legend>Experience</legend>
+        <%= form.fields_for :experiences do |experience_form| %>
+          <%= render 'experience_fields', f: experience_form %>
+        <% end %>
+
+        <%= link_to_add_fields 'Add Experience', form, :experiences %>
+      </fieldset>
+
+      <fieldset>
+        <legend>Education</legend>
+        <%= form.fields_for :educations do |education_form| %>
+          <%= render 'education_fields', f: education_form %>
+        <% end %>
+
+        <%= link_to_add_fields 'Add Education', form, :educations %>
+      </fieldset>
+    </div>
+  </div>
   <div class="row">
     <div class="col-12 text-end">
       <%= form.submit "Send my application", class: "btn btn-primary" %>
     </div>
   </div>
-  <div class="col-md-4">
-    <label for="first_name" class="form-label">First name</label>
-    <%= form.text_field :first_name, id: "first_name", placeholder: "First name", class: "form-control" %>
-  </div>
-
-  <div class="col-md-4">
-    <label for="last_name" class="form-label">Last name</label>
-    <%= form.text_field :last_name, id: "last_name", placeholder: "Last name", class: "form-control" %>
-  </div>
-
-  <div class="col-md-4">
-    <label for="gender" class="form-label">Gender</label>
-    <%= form.select :gender, options_for_select(['Male', 'Female', 'Other']), {}, id: "gender", class: "form-control" %>
-  </div>
-
-  <div class="col-md-4">
-    <label for="phone" class="form-label">Phone</label>
-    <%= form.text_field :phone, id: "phone", placeholder: "Phone", class: "form-control" %>
-  </div>
-
-  <div class="col-md-4">
-    <label for="email" class="form-label">Email</label>
-    <%= form.email_field :email, id: "email", placeholder: "Email", class: "form-control" %>
-  </div>
-
-  <div class="col-md-4">
-  <label for="address" class="form-label">Address</label>
-    <%= form.text_field :address, id: "address",placeholder: "Address", class: "form-control" %>
-  </div>
-
-  <div class="col-md-4">
-  <label for="language" class="form-label">Language</label>
-    <%= form.select :language, options_for_select(['English', 'Spanish', 'French']), {}, id: "language", class: "form-control" %>
-  </div>
-
-  <div class="col-md-4">
-  <label for="nb_exp" class="form-label">Length of experience</label>
-    <%= form.number_field :experience, id: "nb_exp", placeholder: "Experience (years)", class: "form-control" %>
-  </div>
-
-  <div class="col-md-4">
-    <label for="source" class="form-label">Source</label>
-    <%= form.select :source, options_for_select(['Job Board', 'Referral', 'LinkedIn']), {}, id: "source", class: "form-control" %>
-  </div>
-
-  <div class="col-md-6">
-    <label for="resume" class="form-label">Upload the resume</label>
-    <%= form.file_field :resume, id: "resume", class: "form-control" %>
-  </div>
-
-  <div class="col-md-6">
-    <label for="cover_letter" class="form-label">Cover letter</label>
-    <%= form.file_field :cover_letter, id: "cover_letter", class: "form-control" %>
-  </div>
-
-  <div class="col-12">
-  <fieldset>
-  <legend>Experience</legend>
-  <%= form.fields_for :experiences do |experience_form| %>
-    <%= render 'experience_fields', f: experience_form %>
-  <% end %>
-
-  <%= link_to_add_fields 'Add Experience', form, :experiences %>
-  </fieldset>
-
-  <fieldset>
-  <legend>Education</legend>
-  <%= form.fields_for :educations do |education_form| %>
-    <%= render 'education_fields', f: education_form %>
-  <% end %>
-
-  <%= link_to_add_fields 'Add Education', form, :educations %>
-  </fieldset>
-  </div>
-  <div class="row">
-    <div class="col-12 text-end">
-      <%= form.submit "Send my application", class: "btn btn-primary" %>
-    </div>
-  </div>
-  </div>
+</div>
   
 <% end %>

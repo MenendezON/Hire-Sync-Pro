@@ -1,0 +1,40 @@
+<!-- app/views/companies/_form.html.erb -->
+
+<%= form.label :name %>
+<%= form.text_field :name %>
+
+<%= form.label :description %>
+<%= form.text_area :description %>
+
+<%= form.label :email %>
+<%= form.email_field :email %>
+
+<%= form.label :phone_number, 'Enter your phone number:' %>
+<%= form.text_field :phone_number, placeholder: '+221 00 000 0000', pattern: '\+[0-9]{3}\ [0-9]{2}\ [0-9]{3}\ [0-9]{4}', type: 'tel' %>
+
+<%= form.label :address %>
+<%= form.text_field :address %>
+
+<%= form.label :city %>
+<%= form.text_field :city %>
+
+<%= form.label :state do %>
+    Country
+<% end %>
+<%= form.text_field :state %>
+
+<%= form.label :website %>
+<%= form.url_field :website %>
+
+<%= form.label :industry %>
+<%= form.text_field :industry %>
+<!-- Add similar fields for other attributes -->
+
+<%= form.label :establishment_date %>
+<%= form.date_field :establishment_date %>
+
+<%= form.label :revenue %>
+<%= form.text_field :revenue %>
+
+<%= form.label :logo_url %>
+<%= form.text_field :logo_url %>

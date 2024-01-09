@@ -1,39 +1,71 @@
-<h1>Posts</h1>
+<!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <div class="content-header">
+      <div class="container">
+        <div class="row mb-2">
+          <div class="col-sm-12">
+            <h1 class="m-0"> Jobs vacancies</h1>
+          </div><!-- /.col -->
+        </div><!-- /.row -->
+      </div><!-- /.container-fluid -->
+    </div>
+    <!-- /.content-header -->
 
-<div id="posts">
-<table class="table table-hover">
-<tr>
-  <th>Slug</th>
-  <th>Title</th>
-  <th>Category</th>
-  <th>Deadline</th>
-  <th>Created</th>
-  <th>Action</th>
-</tr>
-  <% @posts.each do |post| %>
-    <tr>
-      <td><%= post.slug %></td>
-      <td><%= post.title %></td>
-      <td><%= post.category.name %></td>
-      <td><%= post.deadline %></td>
-      <td><%= post.created_at %></td>
-      <% if current_user && !current_user.user? %>
-        <td><%= link_to "Show this job", admin_post_path(post) %></td>
-      <% else %>
-        <td><%= link_to "Show this job", post_path(post) %></td>
-      <% end %>
-    </tr>
-  <% end %>
-  </table>
-</div>
-<div>
-<% if user_signed_in? %>
-    <strong><%= current_user.company.name %></strong> - <%= current_user.email %>
-    <%= link_to "Admin dashboard", admin_index_path if current_user.admin? || current_user.moderator? %>
-<% else %>
-    <%= link_to "Sign in", new_user_session_path %>
-<% end %>
-</div>
+    <!-- Main content -->
+    <div class="content">
+      <div class="container">
+        <div class="row">
+          <div class="col-12">
+            <div class="card">
+              <div class="card-header">
+                <h3 class="card-title">Responsive Hover Table</h3>
 
+                <div class="card-tools">
+                  <div class="input-group input-group-sm" style="width: 150px;">
+                    <input type="text" name="table_search" class="form-control float-right" placeholder="Search">
 
-
+                    <div class="input-group-append">
+                      <button type="submit" class="btn btn-default">
+                        <i class="fas fa-search"></i>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- /.card-header -->
+              <table class="table table-hover">
+                  <thead>
+                    <tr>
+                      <th>Company</th>
+                      <th>Title</th>
+                      <th>Duty station</th>
+                      <th>Type</th>
+                      <th>Domain</th>
+                      <th>Closing</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                  <% @posts.each do |post| %>
+                    <tr>
+                      <td><%= post.company.name %></td>
+                      <td><%= link_to post.title, post_path(post) %></td>
+                      <td><%= post.country %></td>
+                      <td><%= post.contract %></td>
+                      <td><%= post.category.name %></td>
+                      <td><%= post.deadline %></td>
+                    </tr>
+                  <% end %>
+                  </tbody>
+                </table>
+              <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+          </div>
+        </div>
+        <!-- /.row -->
+      </div><!-- /.container-fluid -->
+    </div>
+    <!-- /.content -->
+  </div>
+  <!-- /.content-wrapper -->
